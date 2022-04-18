@@ -1,7 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'web';
+$route['about'] = 'web/about';
+$route['albums'] = 'web/albums';
+$route['blog'] = 'web/blog';
+$route['contact'] = 'web/contact';
 $route['admin/forgot-password'] = 'Admin/forgotPassword';
 $route['admin/albums/new'] = 'albums/new';
 $route['albums/save-album'] = 'albums/save';

@@ -9,11 +9,12 @@ class Albums extends CI_Controller
   {
     parent::__construct();
     $this->load->model('Albums_model', 'albums');
+    $this->load->model('Blog_model', 'blog');
   }
 
   public function index()
   {
-    // code for website
+    redirect('albums');
   }
 
   public function viewAll()
@@ -102,6 +103,7 @@ class Albums extends CI_Controller
   {
     if($this->session->has_userdata('logged_in')){
       $data['page'] = "albums";
+      $data['categories'] = $this->blog->getCategories();
       $this->load->view('admin/add-album',$data);
     }else{
       redirect('admin/logout');
@@ -122,6 +124,7 @@ class Albums extends CI_Controller
         } else {
           $data['record'] = $album;
           $data['page'] = "albums";
+          $data['categories'] = $this->blog->getCategories();
           $this->load->view('admin/add-album',$data);
         }
       } 
@@ -150,7 +153,15 @@ class Albums extends CI_Controller
         }
       } 
     }else{
-      redirect('admin/logout');
+      if ($id==null) {
+        redirect('albums');
+      } else {
+        $album = $this->albums->getAlbum($id);
+        $photos = $this->albums->getAlbumPics($album['id']);
+        $data['album'] = $album;
+        $data['photos'] = $photos;
+        $this->load->view('view-album',$data);
+      }
     }
   }
 

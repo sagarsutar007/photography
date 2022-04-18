@@ -68,6 +68,8 @@ class Albums_model extends CI_Model {
   {
     $ins_arr = [
       'name' => $data['name'],
+      'exercept' => $data['exercept'],
+      'categoryId' => $data['categoryId'],
       'background' => "",
       'about' => addslashes($data['about']),
       'favourite' => $data['favourite'],
@@ -82,6 +84,8 @@ class Albums_model extends CI_Model {
   {
     $ins_arr = [
       'name' => $data['name'],
+      'exercept' => $data['exercept'],
+      'categoryId' => $data['categoryId'],
       'about' => addslashes($data['about']),
       'favourite' => $data['favourite'],
       'createdAt' => date('Y-m-d h:i:s')

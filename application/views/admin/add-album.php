@@ -61,7 +61,24 @@
                             <div class="form-group">
                               <label for="name">Album Name</label>
                               <input type="text" name="name" id="name" class="form-control" value="<?= isset($record['name'])?$record['name']:''; ?>" required>
-                              <input type="checkbox" name="favourite" id="fav" <?= ($record['favourite']==1)?'checked':''; ?>> <label for="fav" class="text-sm" style="font-weight: 400;">Set as slider</label>
+                              <input type="checkbox" name="favourite" id="fav" <?= (isset($record) && $record['favourite']==1)?'checked':''; ?>> <label for="fav" class="text-sm" style="font-weight: 400;">Set as slider</label>
+                            </div>
+                            <div class="form-group">
+                              <label for="name">Category</label>
+                              <select name="categoryId" id="category" class="form-control" required>
+                                <option value="1"> -- Select Category --</option>
+                                <?php 
+                                  if(isset($categories)){
+                                    foreach ($categories as $category => $cat) {
+                                      if($cat['id'] == $record['categoryId']){
+                                        echo "<option value='".$cat['id']."' selected>".$cat['name']."</option>";
+                                      } else {
+                                        echo "<option value='".$cat['id']."'>".$cat['name']."</option>";
+                                      }
+                                    }
+                                  }
+                                ?>
+                              </select>
                             </div>
                             <div class="form-group">
                               <label for="bg">Background Image</label>
@@ -75,7 +92,7 @@
                             </div>
                             <div class="form-group">
                               <label>Exercept</label>
-                              <textarea id="exercept" class="form-control" name="excercept"><?= isset($record['exercept'])?$record['exercept']:''; ?></textarea>
+                              <textarea id="exercept" class="form-control" name="exercept"><?= isset($record['exercept'])?$record['exercept']:''; ?></textarea>
                             </div>
                             <div class="form-group">
                               <label>About</label>

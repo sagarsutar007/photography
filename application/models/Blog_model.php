@@ -26,6 +26,7 @@ class Blog_model extends CI_Model {
 
 	public function getCategories($value='')
 	{
+		$this->db->where_not_in('categories.id', [1]);
 		return $this->db->get('categories')->result_array();
 	}
 
