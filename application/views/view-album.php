@@ -53,55 +53,6 @@
                               	</div>
                            </div>
                         </div>
-                        <ul class="gallery-meta">
-                           <li>
-                              <div class="favorite-btn">
-                                 <div class="fav-inner">
-                                    <div class="icon-heart">
-                                       <span class="icon-heart-empty"></span>
-                                       <span class="icon-heart-filled"></span>
-                                    </div>
-                                 </div>
-                                 <div class="fav-count">56</div>
-                              </div>
-                           </li>
-                           <li>
-                              <div class="content-share-trigger">
-                                 <a href="#0" class="content-share-icon" title="Share this album" data-toggle="modal" data-target="#modal-87213502">
-                                 <i class="fas fa-share-alt"></i>
-                                 </a>
-                              </div>
-                              <div id="modal-87213502" class="modal modal-center fade" tabindex="-1" role="dialog" aria-hidden="false">
-                                 <div class="modal-dialog">
-                                    <div class="modal-content">
-                                       <div class="modal-header">
-                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                          <h4 class="modal-title">Share This Album</h4>
-                                       </div>
-                                       <div class="modal-body">
-                                          <div class="modal-share">
-                                             <div class="modal-share-image" style="background-image: url(<?= SITE_ASSETS; ?>img/gallery/gallery-single/grid/gallery-single-1.jpg);"></div>
-                                             <div class="social-buttons">
-                                                <ul>
-                                                   <li><a href="#0" class="btn btn-social-min btn-facebook btn-rounded-full" title="Share on facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                                   <li><a href="#0" class="btn btn-social-min btn-twitter btn-rounded-full" title="Share on twitter"><i class="fab fa-twitter"></i></a></li>
-                                                   <li><a href="#0" class="btn btn-social-min btn-google btn-rounded-full" title="Share on google+"><i class="fab fa-google-plus-g"></i></a></li>
-                                                   <li><a href="#0" class="btn btn-social-min btn-pinterest btn-rounded-full" title="Share on pinterest"><i class="fab fa-pinterest"></i></a></li>
-                                                   <li><a href="#0" class="btn btn-social-min btn-linkedin btn-rounded-full" title="Share on linkedin"><i class="fab fa-linkedin-in"></i></a></li>
-                                                </ul>
-                                             </div>
-                                             <input class="grab-link" type="text" readonly="" value="https://your-site.com/your-album-link/" onclick="this.select()">
-                                          </div>
-                                       </div>
-                                       <div class="modal-footer hide"> 
-                                          Copyright 2016 / All rights reserved
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </li>
-                        </ul>
-                        <a href="" class="gs-back-to-list"><i class="fas fa-long-arrow-alt-left"></i> Go Back</a>
                      </div>
                   </div>
                   <div class="col-lg-8">

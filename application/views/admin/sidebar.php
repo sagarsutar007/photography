@@ -46,25 +46,25 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="<?= base_url('admin/blog'); ?>" class="nav-link">
+                <a href="<?= base_url('admin/blog'); ?>" class="nav-link <?= ($page=='blog')?'active':''; ?>">
                     <i class="nav-icon fas fa-newspaper"></i>
                     <p> Blog </p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="<?= base_url('admin/comments'); ?>" class="nav-link">
+                <a href="<?= base_url('admin/comments'); ?>" class="nav-link <?= ($page=='comments')?'active':''; ?>">
                 <i class="nav-icon fas fa-comments"></i>
                     <p> Comments <span class="right badge badge-danger">New</span> </p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="#" class="nav-link <?= ($page=='settings')?'active':''; ?>">
                     <i class="nav-icon fas fa-cog"></i>
                     <p> Settings <i class="fas fa-angle-left right"></i></p>
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="<?= base_url('admin/category'); ?>" class="nav-link">
+                        <a href="<?= base_url('admin/categories'); ?>" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Category</p>
                         </a>
