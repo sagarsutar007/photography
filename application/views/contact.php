@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" class="overflow-y-scroll">
+<html lang="en">
    <head>
-      <title><?= $album['name']; ?></title>
+      <title>Contact</title>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="description" content="">
-      <meta name="author" content="">
+      <meta name="description" content="Responsive Photography HTML5 Website Template">
+      <meta name="author" content="themetorium.net">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
       <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -22,65 +22,33 @@
       <link rel="stylesheet" href="<?= SITE_ASSETS; ?>vendor/animate.min.css">
       <link rel="stylesheet" href="<?= SITE_ASSETS; ?>css/helper.css">
       <link rel="stylesheet" href="<?= SITE_ASSETS; ?>css/theme.css">
-	  <link rel="stylesheet" href="<?= SITE_ASSETS; ?>css/dark-style.css">
-	  <style>
-	  	@media (min-width: 1200px){
-		  	.gs-sidebar.gs-sidebar-fixed {
-			    position: fixed;
-			    width: 30%;
-			    margin-bottom: 0;
-			}
-		}
-	  </style>
+      <link rel="stylesheet" href="<?= SITE_ASSETS; ?>css/dark-style.css">
    </head>
    <body class="temp-uppercase temp-grayscale animsition">
       <span class="page-cover"></span>
       <?php $this->load->view('sidebar'); ?>
       <div id="body-content">
-         <section id="gallery-single-section" class="gallery-single-with-sidebar gs-sidebar-left">
-            <div class="container-fluid no-padding">
-               <div class="row">
-                  <div class="col-lg-4">
-                     <div class="gs-sidebar gs-sidebar-fixed gs-sidebar-fh">
-                        <div class="gs-sidebar-inner">
-                           <div class="gs-sidebar-info">
-                              	<h3 class="font-alter-1"><?= $album['name']; ?></h3>
-                              	<p class="text-muted"><?= "Published on " . date('d.m.y', strtotime($album['createdAt'])); ?></p>
-                              	<div class="gs-sidebar-description">
-                                	<p>
-                                		<?= html_entity_decode(stripslashes($album['about'])); ?>
-                                	</p>
-                              	</div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-lg-8">
-                     <div class="isotope-wrap">
-                        <div class="isotope col-3 gutter-3">
-                           <div id="gallery" class="isotope-items-wrap lightgallery cover-color cover-boxed">
-                              <div class="grid-sizer"></div>
-                              <?php foreach ($photos as $key => $obj) { ?>
-                              <div class="isotope-item">
-                                 <a href="<?= SITE_ASSETS . 'images/' . $obj['picture']; ?>" class="gallery-single-item lg-trigger" data-exthumbnail="<?= SITE_ASSETS . 'images/' . $obj['picture']; ?>" data-sub-html="<h4><?= $obj['title']; ?></h4><p><?= $obj['about']; ?></p>">
-                                    <img class="gs-item-image" src="<?= SITE_ASSETS . 'images/' . $obj['picture']; ?>" alt="">
-                                    <div class="gs-item-cover">
-                                       <div class="gs-item-info">
-                                          <span class="s-icon"><i class="fas fa-search"></i></span>
-                                       </div>
-                                    </div>
-                                 </a>
-                              </div>   
-                              <?php } ?>
-                              
-                           </div>
-                        </div>
-                     </div>
-                  </div>
+         <section id="contact-section" class="contact-simple" style="background-image: url(<?= SITE_ASSETS; ?>img/misc/misc-4.jpg); background-position: 50% 50%;">
+            <div class="cover"></div>
+            <div class="contact-info-wrap">
+               <div class="contact-info">
+                  <p><i class="fas fa-home"></i> address: 121 King Street, Melbourne, Australia</p>
+                  <p><i class="fas fa-phone-alt"></i> phone: +123 456 789 000</p>
+                  <p><i class="far fa-envelope"></i> email: <a href="mailto:company@email.com" target="_blank">company@email.com</a></p>
+               </div>
+               <div class="social-buttons margin-top-20">
+                  <ul>
+                     <li><a href="#" class="btn btn-social-min btn-dark-bordered btn-rounded-full" target="_blank" title="Follow me on facebook"><i class="fab fa-facebook-f"></i></a></li>
+                     <li><a href="#" class="btn btn-social-min btn-dark-bordered btn-rounded-full" target="_blank" title="Follow me on twitter"><i class="fab fa-twitter"></i></a></li>
+                     <li><a href="#" class="btn btn-social-min btn-dark-bordered btn-rounded-full" target="_blank" title="Follow me on dribbble"><i class="fab fa-dribbble"></i></a></li>
+                     <li><a href="#" class="btn btn-social-min btn-dark-bordered btn-rounded-full" target="_blank" title="Follow me on behance"><i class="fab fa-behance"></i></a></li>
+                     <li><a href="#" class="btn btn-social-min btn-dark-bordered btn-rounded-full" target="_blank" title="Follow me on youtube"><i class="fab fa-youtube"></i></a></li>
+                  </ul>
                </div>
             </div>
          </section>
       </div>
+      <a href="#body-content" class="scrolltotop sm-scroll" title="Scroll to top"><i class="fas fa-chevron-up"></i></a>
       <script src="<?= SITE_ASSETS; ?>vendor/jquery/jquery.min.js"></script> 
       <script src="<?= SITE_ASSETS; ?>vendor/bootstrap/js/bootstrap.min.js"></script> 
       <script src="<?= SITE_ASSETS; ?>vendor/animsition/js/animsition.min.js"></script> 

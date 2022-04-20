@@ -10,7 +10,7 @@ class Blog extends CI_Controller {
 
 	public function index()
 	{
-			
+		
 	}
 
 	public function viewAll()
@@ -88,7 +88,6 @@ class Blog extends CI_Controller {
 	      redirect('admin/login');
 	    }
 	}
-
 
 	public function new()
 	{
@@ -220,6 +219,7 @@ class Blog extends CI_Controller {
 	      redirect('admin/logout');
 	    }
 	}
+
 }
 
 /* End of file  */
