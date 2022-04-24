@@ -239,6 +239,109 @@ class Admin extends CI_Controller
     echo json_encode($data);
   }
 
+  public function account()
+  {
+    if($this->session->has_userdata('logged_in')){
+      $data['admin'] = $this->admin->getAboutAdmin();  
+      $data['page'] = "settings";
+      $this->load->view('admin/account',$data); 
+    } else {
+      redirect('admin/logout');
+    } 
+  }
+
+  public function updatePersonal()
+  {
+    if($this->session->has_userdata('logged_in')){
+      $data = $this->input->post();
+      $affrows = $this->admin->updatePersonal($data);
+      if($affRows){
+        $this->session->set_flashdata('success_msg','Information updated!');
+      } else {
+        $this->session->set_flashdata('error_msg','Information not updated!');
+      }
+      redirect('admin/account');
+    } else {
+      redirect('admin/logout');
+    } 
+  }
+
+  public function updateCompany()
+  {
+    if($this->session->has_userdata('logged_in')){
+      $data = $this->input->post();
+      $affrows = $this->admin->updateCompany($data);
+      if($affRows){
+        $this->session->set_flashdata('success_msg','Information updated!');
+      } else {
+        $this->session->set_flashdata('error_msg','Information not updated!');
+      }
+      redirect('admin/account');
+    } else {
+      redirect('admin/logout');
+    } 
+  }
+
+  public function updateAccount()
+  {
+    if($this->session->has_userdata('logged_in')){
+      $data = $this->input->post();
+      if($data['new_pass'] == $data['con_pass']){
+          $admin = $this->admin->getAboutAdmin();
+          if(sha1($data['cur_pass']) == $admin['password']){
+            $affrows = $this->admin->updateAccount($data);
+            if($affRows){
+              $this->session->set_flashdata('success_msg','Account Password updated!');
+            } else {
+              $this->session->set_flashdata('error_msg','Account Password not updated!');
+            }
+          }else{
+            $this->session->set_flashdata('error_msg',"Password is incorrect!");
+          }
+      } else {
+        $this->session->set_flashdata('error_msg','Passwords do not match!');
+      }
+      redirect('admin/account');
+    } else {
+      redirect('admin/logout');
+    } 
+  }
+
+
+  public function updateProfilePic($value='')
+  {
+    if($this->session->has_userdata('logged_in')){
+      if(empty($_FILES)){
+        $this->session->set_flashdata('error_msg','Please select an image!');
+      }else{
+
+        if($_FILES['file']['name'] != ""){
+          $file_name = basename($_FILES['file']['name']);
+          $config['upload_path'] = 'assets/site/images/';
+          $config['allowed_types'] = 'gif|jpg|png|jpeg|gif|webp';
+          $config['file_name'] = $file_name;
+          $this->load->library('upload', $config);
+          $this->upload->initialize($config);
+          if ($this->upload->do_upload('file')){
+            $this->admin->updateAccountPic($file_name);
+            if($affRows){
+              $this->session->set_flashdata('success_msg','Information updated!');
+            } else {
+              $this->session->set_flashdata('error_msg','Information not updated!');
+            }
+          }else{
+            $this->session->set_flashdata('error_msg','Please select image only!');
+          }
+        } else {
+          $this->session->set_flashdata('error_msg','Please send one image!');
+        }
+      }
+      redirect('admin/account');
+    } else {
+      redirect('admin/logout');
+    }
+  }
+
 }
 
 

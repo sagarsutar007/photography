@@ -5,6 +5,7 @@ $route['default_controller'] = 'web';
 $route['about'] = 'web/about';
 $route['albums'] = 'web/albums';
 $route['blog'] = 'web/blog';
+$route['article/(:any)'] = 'web/article/$1';
 $route['contact'] = 'web/contact';
 $route['admin/forgot-password'] = 'Admin/forgotPassword';
 $route['admin/albums/new'] = 'albums/new';

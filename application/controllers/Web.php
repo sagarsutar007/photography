@@ -122,6 +122,86 @@ class Web extends CI_Controller {
 		$this->load->view('contact',$data);
 	}
 
+	public function article($value='')
+	{
+		$q = $this->webmod->getBlogFromUrl($value);
+		$q['categoryName'] = $this->webmod->getCatName($q['categoryId']);
+		if($q){
+			$data['admin'] = $this->webmod->getAboutAdmin();
+			$data['comments'] = $this->webmod->getBlogComments($q['id']);
+			$data['blog'] = $q;
+			$data['prevBlog'] = $this->webmod->getPrevBlog($q['id']);
+			$data['nextBlog'] = $this->webmod->getNextBlog($q['id']);
+			$this->load->view('view-blog',$data);
+		} else {
+			redirect('blog');
+		}
+	}
+
+	public function addComment()
+	{
+		$data = $this->input->post();
+		$q = $this->webmod->addBlogComment($data);
+		if($q){
+			echo "TRUE";
+		} else {
+			echo "FALSE";
+		}
+	}
+
+	public function sendMail()
+	{
+		$method = $_SERVER['REQUEST_METHOD'];
+		//Script Foreach
+		$c = true;
+		if ( $method === 'POST' ) {
+
+			$project_name = trim($_POST["project_name"]);
+			$admin_email  = trim($_POST["admin_email"]);
+			$form_subject = trim($_POST["form_subject"]);
+
+			foreach ( $_POST as $key => $value ) {
+				if ( $value != "" && $key != "project_name" && $key != "admin_email" && $key != "form_subject" ) {
+					$message .= "
+					" . ( ($c = !$c) ? '<tr>':'<tr style="background-color: #f3f3f3;">' ) . "
+					<td style='padding: 10px; border: #e9e9e9 1px solid; width: 100px;'><b>$key</b></td>
+					<td style='padding: 10px; border: #e9e9e9 1px solid;'>$value</td>
+				</tr>
+				";
+			}
+		}
+		} else if ( $method === 'GET' ) {
+
+			$project_name = trim($_GET["project_name"]);
+			$admin_email  = trim($_GET["admin_email"]);
+			$form_subject = trim($_GET["form_subject"]);
+
+			foreach ( $_GET as $key => $value ) {
+				if ( $value != "" && $key != "project_name" && $key != "admin_email" && $key != "form_subject" ) {
+					$message .= "
+					" . ( ($c = !$c) ? '<tr>':'<tr style="background-color: #f3f3f3;">' ) . "
+					<td style='padding: 10px; border: #e9e9e9 1px solid; width: 100px;'><b>$key</b></td>
+					<td style='padding: 10px; border: #e9e9e9 1px solid;'>$value</td>
+				</tr>
+				";
+			}
+		}
+		}
+
+		$message = "<table style='width: 100%;'>$message</table>";
+
+		function adopt($text) {
+			return '=?UTF-8?B?'.base64_encode($text).'?=';
+		}
+
+		$headers = "MIME-Version: 1.0" . PHP_EOL .
+		"Content-Type: text/html; charset=utf-8" . PHP_EOL .
+		'From: '.adopt($project_name).' <'.$admin_email.'>' . PHP_EOL .
+		'Reply-To: '.$admin_email.'' . PHP_EOL;
+
+		mail($admin_email, adopt($form_subject), $message, $headers );
+	}
+
 }
 
 /* End of file Web.php */

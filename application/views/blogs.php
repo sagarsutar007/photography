@@ -51,14 +51,14 @@
                               ?>
                               <div class="isotope-item">
                                  <article class="blog-list-item">
-                                    <a href="#" class="bl-item-image">
+                                    <a href="<?= base_url() . "article/" . $obj['url']; ?>" class="bl-item-image">
                                        <img src="<?= $image; ?>" alt="image">
                                     </a>
                                     <div class="bl-item-info">
                                        <div class="bl-item-category">
-                                          <a href="#"><?= $obj['catName']; ?></a>
+                                          <a href="<?= base_url() . "article/" . $obj['url']; ?>"><?= $obj['catName']; ?></a>
                                        </div>
-                                       <a href="#" class="bl-item-title">
+                                       <a href="<?= base_url() . "article/" . $obj['url']; ?>" class="bl-item-title">
                                           <h2><?= $obj['title']; ?></h2>
                                        </a>
                                        <div class="bl-item-meta">
@@ -69,9 +69,9 @@
                                           <span class="posted-by">- by <a href="#"><?= $admin['name']; ?></a></span>
                                        </div>
                                        <div class="bl-item-desc">
-                                          <?= $obj['exercept']; ?>
+                                          <?= stripslashes($obj['exercept']); ?>
                                        </div>
-                                       <a href="blog-single.html" class="bl-item-read-more" title="Read More"><span></span></a>
+                                       <a href="<?= base_url() . "article/" . $obj['url']; ?>" class="bl-item-read-more" title="Read More"><span></span></a>
                                     </div>
                                  </article>
                               </div>

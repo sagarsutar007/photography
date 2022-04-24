@@ -7,7 +7,7 @@
 *
 * Template main color: #ea4e4e;
 * Global font family: 'Inconsolata', monospace;
-* Alter font family 1: 'Galada', cursive; (handled by "helper.css" file)
+* Alter font family 1: 'SF-Pro', cursive; (handled by "helper.css" file)
 * Alter font family 2: 'Bilbo Swash Caps', cursive; (handled by "helper.css" file)
 ----------------------------------------------------------------------- */
 
@@ -60,7 +60,7 @@
 */
 
 
-
+@font-face { font-family: SF-Pro; src: url('SF-Pro-Display-Regular.otf'); } 
 /* ------------------------------------------------------------- *
  *  General
 /* ------------------------------------------------------------- */
@@ -4697,7 +4697,7 @@ a.bl-item-image:hover {
 	overflow: inherit;
 }
 .media-body {
-	width: 100%;
+	min-width: 100%;
 	background-color: #fff;
 	padding: 20px;
 	margin-bottom: 2px;

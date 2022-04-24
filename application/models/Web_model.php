@@ -64,6 +64,52 @@ class Web_model extends CI_Model {
 		return $q->num_rows();
 	}
 
+	public function getBlogFromUrl($value='')
+	{
+		$q = $this->db->get_where('blogs', ['url' => $value]);
+		return $q->row_array();
+	}
+
+	public function getPrevBlog($value='')
+	{
+		$sql = "SELECT * FROM `blogs` WHERE id < $value LIMIT 1";
+		$q = $this->db->query($sql);
+		return $q->row_array();
+	}
+
+	public function getNextBlog($value='')
+	{
+		$sql = "SELECT * FROM `blogs` WHERE id > $value LIMIT 1";
+		$q = $this->db->query($sql);
+		return $q->row_array();
+	}
+
+	public function getBlogFromId($value='')
+	{
+		$q = $this->db->get_where('blogs', ['id' => $value]);
+		return $q->row_array();
+	}
+
+	public function getBlogComments($value='')
+	{
+		$q = $this->db->get_where('comments',['relatedId'=>$value,'type'=>'blog','status'=>'approved']);
+		return $q->result_array();
+	}
+
+	public function addBlogComment($data='')
+	{
+		$ins_arr = [
+			'name' => $data['name'], 
+			'email' => $data['email'], 
+			'text' => $data['message'], 
+			'type' => 'blog', 
+			'relatedId' => $data['blogid'], 
+			'status' => 'pending', 
+			'createdAt' => date('Y-m-d H:i:s')
+		];
+		$this->db->insert('comments', $ins_arr);
+		return $this->db->insert_id();
+	}
 }
 
 /* End of file Web_model.php */

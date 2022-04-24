@@ -26,6 +26,7 @@
 17. Margin classes
 18. Bootstrap responsive columns of same height
 */
+@font-face { font-family: SF-Pro; src: url('SF-Pro-Display-Regular.otf'); } 
 
 
 /* ------------------------------------------------------------- *
@@ -149,7 +150,7 @@
 
 /* font alternate 1 */
 .font-alter-1 { 
-	font-family: 'Galada', cursive;
+	font-family: 'SF-Pro', cursive;
 	font-weight: normal !important;
 	text-transform: none !important;
 	letter-spacing: 0 !important;

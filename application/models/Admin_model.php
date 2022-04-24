@@ -83,6 +83,53 @@ class Admin_model extends CI_Model {
 		return $this->db->affected_rows();
 	}
 
+	public function getAboutAdmin()
+	{
+		return $this->db->get_where('users',['type'=>'superadmin'])->row_array();
+	}
+
+	public function updatePersonal($data='')
+	{
+		$updArr = [
+			'name'=>$data['name'],
+			'email'=>$data['email'],
+			'phone'=>$data['phone'],
+			'address'=>$data['address'],
+			'facebook'=>$data['facebook'],
+			'twitter'=>$data['twitter'],
+			'instagram'=>$data['instagram'],
+			'behance'=>$data['behance'],
+			'dribble'=>$data['dribble']
+		];
+		$this->db->update('users',$updArr,['type'=>'superadmin']);
+		return $this->db->affected_rows();
+	}
+
+	public function updateCompany($data='')
+	{
+		$updArr = [
+			'companyName'=>$data['company'],
+			'designation'=>$data['designation'],
+			'work'=>$data['work'],
+			'about'=>$data['about']
+		];
+		$this->db->update('users',$updArr,['type'=>'superadmin']);
+		return $this->db->affected_rows();
+	}
+
+	public function updateAccount($data='')
+	{
+		$updArr = [ 'password'=>sha1($data['cur_pass']) ];
+		$this->db->update('users',$updArr,['type'=>'superadmin']);
+		return $this->db->affected_rows();
+	}
+
+	public function updateAccountPic($value='')
+	{
+		$updArr = [ 'photo'=>$value ];
+		$this->db->update('users',$updArr,['type'=>'superadmin']);
+		return $this->db->affected_rows();
+	}
 }
 
 /* End of file Admin_model.php */

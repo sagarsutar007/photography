@@ -15,9 +15,9 @@
                 if(empty($this->session->userdata('photo'))){
                     $image = ADMIN_ASSETS. 'img/user2-160x160.jpg';
                 } else {
-                    $photo = "assets/admin/img/" . $this->session->userdata('photo');
+                    $photo = "assets/site/images/" . $this->session->userdata('photo');
                     if(file_exists($photo)){
-                        $image = ADMIN_ASSETS . 'img/' . $this->session->userdata('photo');
+                        $image = $photo;
                     } else {
                         $image = ADMIN_ASSETS. 'img/user2-160x160.jpg';
                     }
