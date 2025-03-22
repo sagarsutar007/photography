@@ -7,7 +7,9 @@ class Web_model extends CI_Model {
 	}
 
 	public function getSlider(){
-		return $this->db->get_where('albums', ['favourite'=>1])->result_array();
+		$sql = "SELECT a.*, c.name as categoryName FROM `albums` a INNER JOIN categories c ON a.categoryId = c.id WHERE status = 'published' AND a.favourite = 1";
+		$q = $this->db->query($sql);
+		return $q->result_array();
 	}
 
 	public function getAboutAdmin()
@@ -15,9 +17,9 @@ class Web_model extends CI_Model {
 		return $this->db->get_where('users',['type'=>'superadmin'])->row_array();
 	}
 
-	public function getAlbums()
+	public function getProjects()
 	{
-		$sql = "SELECT a.id,a.name,a.background,c.name as category FROM `albums` a INNER JOIN categories c ON a.categoryId = c.id WHERE status = 'published'";
+		$sql = "SELECT a.*,c.name as category FROM `albums` a INNER JOIN categories c ON a.categoryId = c.id WHERE status = 'published'";
 		$q = $this->db->query($sql);
 		return $q->result_array();
 	}
@@ -109,6 +111,26 @@ class Web_model extends CI_Model {
 		];
 		$this->db->insert('comments', $ins_arr);
 		return $this->db->insert_id();
+	}
+
+	public function getAlbumBySlug($slug='')
+	{
+		$sql = "SELECT a.*,c.name as category FROM `albums` a INNER JOIN categories c ON a.categoryId = c.id WHERE a.slug = '".$slug."'";
+		$q = $this->db->query($sql);
+		return $q->row_array();
+	}
+
+	public function getAlbumPics($value='')
+	{
+	    $q = $this->db->get_where('pictures',['albumid'=>$value]);
+	    return $q->result_array();
+	}
+
+	public function getLockedProjects()
+	{
+		$sql = "SELECT a.*, c.name as category FROM `albums` a INNER JOIN categories c ON a.categoryId = c.id WHERE a.status = 'published' AND a.password IS NOT NULL ORDER BY a.createdAt DESC";
+		$q = $this->db->query($sql);
+		return $q->result_array();
 	}
 }
 

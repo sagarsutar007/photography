@@ -10,7 +10,7 @@ class Albums_model extends CI_Model {
  
   public function index()
   {
-    // 
+    return false;
   }
 
   public function countTotalAlbums()
@@ -72,7 +72,11 @@ class Albums_model extends CI_Model {
       'categoryId' => $data['categoryId'],
       'background' => "",
       'about' => addslashes($data['about']),
+      'projectColor' => $data['projectColor'],
+      'projectBgColor' => $data['projectBgColor'],
+      'password' => $data['password'],
       'favourite' => $data['favourite'],
+      'slug' => $data['slug'],
       'createdAt' => date('Y-m-d h:i:s')
     ];
 
@@ -85,10 +89,14 @@ class Albums_model extends CI_Model {
     $ins_arr = [
       'name' => $data['name'],
       'exercept' => $data['exercept'],
+      'projectColor' => $data['projectColor'],
+      'projectBgColor' => $data['projectBgColor'],
+      'password' => $data['password'],
       'categoryId' => $data['categoryId'],
       'about' => addslashes($data['about']),
       'favourite' => $data['favourite'],
-      'createdAt' => date('Y-m-d h:i:s')
+      'slug' => $data['slug'],
+      'updatedAt' => date('Y-m-d h:i:s')
     ];
 
     $con_arr = [ 'id'=>$data['id'] ];
@@ -152,6 +160,15 @@ class Albums_model extends CI_Model {
   public function getPicture($id='')
   {
     return $this->db->get_where('pictures', ['id'=>$id])->row_array();
+  }
+
+  public function slugExists($slug, $id = null)
+  {
+      $this->db->where('slug', $slug);
+      if ($id) {
+          $this->db->where('id !=', $id);
+      }
+      return $this->db->get('albums')->num_rows() > 0;
   }
 
 }

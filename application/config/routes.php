@@ -2,11 +2,15 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['default_controller'] = 'web';
+$route['demo'] = 'web/demo';
 $route['about'] = 'web/about';
 $route['albums'] = 'web/albums';
+$route['album/(:any)'] = 'web/viewAlbum/$1';
+$route['projects'] = 'web/projects';
 $route['blog'] = 'web/blog';
 $route['article/(:any)'] = 'web/article/$1';
 $route['contact'] = 'web/contact';
+$route['locked-projects'] = 'web/lockedProjects';
 $route['admin/forgot-password'] = 'Admin/forgotPassword';
 $route['admin/albums/new'] = 'albums/new';
 $route['albums/save-album'] = 'albums/save';

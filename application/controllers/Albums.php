@@ -205,6 +205,10 @@ class Albums extends CI_Controller
           $data['favourite'] = isset($data['favourite'])?1:0;
           $data['about'] = htmlspecialchars($data['about']);
           $update = 0;
+
+          $slug = strtolower(url_title($data['name'], 'dash', TRUE));
+          $data['slug'] = $this->generateUniqueSlug($slug, isset($data['id']) ? $data['id'] : null);
+            
           if(isset($data['id'])){
             $update = 1;
             $last_id = $data['id'];
@@ -339,6 +343,19 @@ class Albums extends CI_Controller
       $data['msg'] = "You've been logged out!";
     }
     echo json_encode($data);
+  }
+
+  private function generateUniqueSlug($slug, $id = null)
+  {
+      $originalSlug = $slug;
+      $count = 1;
+
+      while ($this->albums->slugExists($slug, $id)) {
+          $slug = $originalSlug . '-' . $count;
+          $count++;
+      }
+
+      return $slug;
   }
 
 }
